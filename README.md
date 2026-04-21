@@ -3,6 +3,9 @@
 A full-stack company management platform built with Node.js, React, and MongoDB Atlas.
 Role-based access control gives admins, managers, and employees their own tailored experience.
 
+**🌐 Live Demo:** https://cms-frontend-zln9.onrender.com  
+**📦 GitHub:** https://github.com/intsurjeetkaran-droid/cms
+
 ---
 
 ## Tech Stack

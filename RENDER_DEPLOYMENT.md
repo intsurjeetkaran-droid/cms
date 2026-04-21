@@ -1,8 +1,23 @@
 # Render Deployment Guide
 
 **Backend URL:** https://cms-p7tx.onrender.com  
+**Frontend URL:** https://cms-frontend-zln9.onrender.com  
 **API Base URL:** https://cms-p7tx.onrender.com/api  
-**Status:** ✅ Deployed and Running
+**Status:** ✅ Both Deployed and Running
+
+---
+
+## Deployment Overview
+
+### Backend (Render Web Service)
+- **URL:** https://cms-p7tx.onrender.com
+- **Type:** Node.js/Express API
+- **Database:** MongoDB Atlas
+
+### Frontend (Render Static Site)
+- **URL:** https://cms-frontend-zln9.onrender.com
+- **Type:** React + Vite
+- **API Connection:** https://cms-p7tx.onrender.com/api
 
 ---
 
@@ -229,7 +244,7 @@ Expected response:
 
 ## CORS Configuration
 
-The backend must have CORS enabled to accept requests from the frontend.
+The backend is configured to accept requests from authorized frontend URLs only.
 
 **In `backend/server.js`:**
 
@@ -238,12 +253,16 @@ const cors = require('cors');
 
 app.use(cors({
   origin: [
-    'http://localhost:5173',           // Local development
-    'https://your-frontend-url.vercel.app', // Production frontend
+    'http://localhost:5173',                    // Local development
+    'https://cms-frontend-zln9.onrender.com',   // Production frontend on Render
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 ```
+
+**✅ Already configured for production!**
 
 ---
 

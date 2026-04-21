@@ -16,7 +16,15 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',                          // Local development
+    'https://cms-frontend-zln9.onrender.com',         // Production frontend on Render
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json()); // Parse JSON request body
 
 // Debug log for server start
