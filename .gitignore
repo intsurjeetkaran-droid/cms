@@ -15,6 +15,7 @@ frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
 
+
 # ── Node Modules ──
 node_modules/
 backend/node_modules/
