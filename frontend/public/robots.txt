@@ -1,0 +1,6 @@
+# robots.txt for NexusCMS
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cms-frontend-zln9.onrender.com/sitemap.xml
