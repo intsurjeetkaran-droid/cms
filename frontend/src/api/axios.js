@@ -2,10 +2,10 @@ import axios from "axios";
 
 // ============================================================
 // API Instance — base config for all backend requests
-// Base URL points to Express backend running on port 5000
+// Base URL from environment variable or fallback to Render deployment
 // ============================================================
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://cms-p7tx.onrender.com/api",
 });
 
 // Attach JWT token to every outgoing request if available

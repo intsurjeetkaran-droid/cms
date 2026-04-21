@@ -136,10 +136,23 @@ npm start      # production
 ```bash
 cd cms/frontend
 npm install
+```
+
+Create `.env` file (or copy from `.env.example`):
+
+```env
+# For production (Render deployment)
+VITE_API_URL=https://cms-p7tx.onrender.com/api
+
+# For local development
+# VITE_API_URL=http://localhost:5000/api
+```
+
+```bash
 npm run dev
 ```
 
-Frontend → `http://localhost:5173` | Backend → `http://localhost:5000`
+Frontend → `http://localhost:5173` | Backend → `https://cms-p7tx.onrender.com`
 
 ### DNS Note
 
