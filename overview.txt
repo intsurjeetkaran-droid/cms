@@ -1,0 +1,312 @@
+COMPANY MANAGEMENT SYSTEM (CMS) — Overview
+==========================================
+
+What is this system?
+--------------------
+A digital platform that helps a company manage its employees, work tasks,
+attendance, salaries, and leave requests — all in one place.
+
+There are three types of users in the system:
+
+  ADMIN      — The company owner or HR head. Has full control over everything.
+  MANAGER    — A team lead. Manages their team's tasks, attendance, and payroll.
+  EMPLOYEE   — A regular staff member. Can view their own data and do daily tasks.
+
+Each person logs in with their email and password and sees only what they are
+allowed to see based on their role.
+
+
+===========================================
+HOW EACH ROLE WORKS
+===========================================
+
+ADMIN
+-----
+The admin is the most powerful user. They set up the entire system.
+
+What admin can do:
+  - Create departments (e.g. Engineering, Sales, HR)
+  - Add managers and assign them to departments
+  - Add employees to the system
+  - View all employees, tasks, attendance, payroll, and leave requests
+  - Approve or reject leave requests from both employees AND managers
+  - Generate salary (payroll) for any employee
+  - Bulk mark employees as absent for a specific date
+
+What admin CANNOT do:
+  - Apply for leave (admin is not an employee)
+  - Create tasks (only managers do that)
+
+
+MANAGER
+-------
+A manager leads a team. They are assigned to exactly ONE department.
+Everything a manager does is limited to their own department only.
+They cannot see or touch data from other departments.
+
+What manager can do:
+  - Add new employees — but ONLY to their own department
+  - Create tasks and assign them — but ONLY to employees in their department
+  - View their team's attendance — but ONLY their department's employees
+  - Generate salary for team members — but ONLY their department's employees
+  - View their team's payroll — but ONLY their department's employees
+  - View and approve/reject leave requests — but ONLY from their department's employees
+  - Apply for their own leave
+
+What manager CANNOT do:
+  - See employees, tasks, attendance, payroll, or leaves from other departments
+  - Approve their own leave (must be approved by admin)
+  - Approve another manager's leave
+  - Delete employees
+  - Create other managers
+  - Do anything until admin assigns them to a department
+
+
+EMPLOYEE
+--------
+A regular staff member who uses the system daily.
+
+What employee can do:
+  - View their own profile (name, department, salary, etc.)
+  - Check in when they arrive at work
+  - Check out when they leave
+  - View their own attendance history
+  - View tasks assigned to them
+  - Mark a task as DONE — once done, it cannot be changed back
+  - View their own salary slip for each month
+  - Apply for leave
+  - View the status of their leave requests
+
+What employee CANNOT do:
+  - See other employees' data
+  - Create tasks
+  - Generate payroll
+  - Approve anyone's leave
+
+
+===========================================
+MODULES EXPLAINED
+===========================================
+
+1. DEPARTMENTS
+--------------
+The company is divided into departments (e.g. Engineering, Marketing, HR).
+Each department has exactly one manager.
+
+Rules:
+  - A department can be created without a manager first
+  - Only one manager per department — you cannot assign two managers to the same department
+  - A manager can only belong to one department at a time
+  - Only admin can create departments and assign managers
+  - The correct setup order is:
+      1. Admin creates departments
+      2. Admin creates managers (no department needed at this step)
+      3. Admin assigns each manager to a department
+      4. Admin adds employees (department required)
+
+
+2. EMPLOYEES
+------------
+Every person in the system (except admin) is an employee.
+When an employee is added, they automatically get a login account.
+
+Rules:
+  - Minimum salary is $20,000
+  - Manager can add employees but ONLY to their own department
+  - Manager cannot add employees to other departments
+  - Admin can add both employees and managers to any department
+  - When admin adds a MANAGER, no department is needed at that point —
+    admin assigns the department later from the Departments page
+  - When admin adds an EMPLOYEE, a department must be selected
+  - On the manager's team page, employees added by admin show an "Admin" badge
+    so the manager knows who was added by admin vs themselves
+  - Deleting an employee does not delete their login account
+  - A manager must be assigned to a department before they can add anyone
+
+
+3. TASKS
+--------
+Managers assign work tasks to employees.
+
+Rules:
+  - Each task is assigned to one employee only
+  - One employee can have many tasks
+  - Only managers can create tasks
+  - Manager can ONLY assign tasks to employees in their own department
+  - Manager cannot assign tasks to employees in other departments
+  - Employees can mark a task as DONE — but CANNOT revert it back to pending
+  - Once a task is marked done, it stays done permanently
+  - Admin can see all tasks but cannot create them
+
+Task status:
+  PENDING   — work not started or in progress
+  DONE      — work completed
+
+
+4. ATTENDANCE
+-------------
+Employees record their daily presence by checking in and out.
+
+Rules:
+  - An employee can only check in once per day
+  - You must check in before you can check out
+  - You cannot check out twice in the same day
+  - If you check in → marked as PRESENT (any time)
+  - If you don't check in at all → marked as ABSENT
+  - If your leave is approved → marked as LEAVE (not absent)
+
+Attendance status:
+  PRESENT   — checked in (any time)
+  ABSENT    — did not come to work
+  LEAVE     — on approved leave (no salary deduction)
+
+
+5. PAYROLL (SALARY)
+-------------------
+Salary is calculated at the end of each month based on attendance.
+
+How it works:
+  - Base salary is the fixed monthly salary set when the employee was added
+  - For every day marked ABSENT, $500 is deducted from the salary
+  - Days marked as LEAVE are NOT deducted (approved leave is protected)
+  - Final salary = Base salary − (Absent days × $500)
+
+Example:
+  Base salary: $30,000
+  Absent days: 3
+  Deduction:   3 × $500 = $1,500
+  Net salary:  $30,000 − $1,500 = $28,500
+
+Rules:
+  - Payroll can only be generated once per employee per month
+  - Admin can generate payroll for any employee
+  - Manager can ONLY generate payroll for employees in their own department
+  - Employee can only view their own salary — cannot generate it
+
+
+6. LEAVE
+--------
+Employees and managers can request days off.
+
+How it works:
+  1. Employee or manager submits a leave request with start date, end date, and reason
+  2. The request shows as PENDING
+  3. A manager approves or rejects leave requests — but ONLY from their own department's employees
+  4. Admin approves or rejects manager leave requests (and can also approve any employee leave)
+  5. If approved, those days are automatically marked as LEAVE in attendance
+
+Rules:
+  - Maximum 5 leave days per month per person
+  - You cannot apply for overlapping dates (if you already have a request for those days)
+  - Admin cannot apply for leave
+  - A manager cannot approve their own leave
+  - A manager cannot approve another manager's leave
+  - A manager cannot approve leaves from employees in other departments
+  - Once approved or rejected, the decision cannot be changed
+
+Leave status:
+  PENDING   — waiting for approval
+  APPROVED  — leave granted, attendance updated automatically
+  REJECTED  — leave denied
+
+
+===========================================
+APPROVAL CHAIN
+===========================================
+
+Who approves what:
+
+  Employee leave  →  Manager (own dept only) OR Admin can approve
+  Manager leave   →  Admin ONLY can approve
+
+  Nobody can approve their own leave.
+  Manager cannot approve leaves from other departments.
+
+
+===========================================
+MANAGER DEPARTMENT SCOPE — IMPORTANT
+===========================================
+
+A manager's access is completely limited to their own department.
+This means:
+
+  - They can only SEE employees from their department
+  - They can only ADD employees to their department
+  - They can only ASSIGN tasks to their department's employees
+  - They can only VIEW attendance of their department's employees
+  - They can only GENERATE payroll for their department's employees
+  - They can only APPROVE leaves from their department's employees
+
+If a manager has no department assigned, they cannot do any of the above
+until admin assigns them to a department.
+
+
+===========================================
+SALARY DEDUCTION SUMMARY
+===========================================
+
+  PRESENT  →  No deduction
+  ABSENT   →  $500 deducted per day
+  LEAVE    →  No deduction (protected)
+
+
+===========================================
+DAILY WORKFLOW EXAMPLE
+===========================================
+
+A typical day in the system:
+
+  Morning:
+    Employee opens the app → goes to Attendance → clicks "Check In"
+    System records the time and marks them present
+
+  During the day:
+    Employee opens Tasks → sees their assigned work
+    Completes a task → clicks "Mark as Done"
+
+  End of day:
+    Employee goes to Attendance → clicks "Check Out"
+    System calculates how many hours they worked
+
+  End of month:
+    Manager goes to Payroll → selects employee + month → clicks "Generate Payroll"
+    System counts absent days, calculates deduction, saves the salary record
+    Employee can view their salary slip under Payroll
+
+
+===========================================
+LEAVE REQUEST WORKFLOW EXAMPLE
+===========================================
+
+  1. Employee goes to Leaves → fills in dates and reason → submits
+  2. Manager sees the request under "Team Leave Requests"
+  3. Manager clicks Approve or Reject
+  4. Employee sees the updated status under their Leave History
+  5. If approved, those days automatically show as LEAVE in attendance
+     and will NOT be deducted from salary when payroll is generated
+
+
+===========================================
+QUICK REFERENCE — WHO CAN DO WHAT
+===========================================
+
+  FEATURE                        ADMIN    MANAGER          EMPLOYEE
+  ------------------------------------------------------------------
+  Create department               YES      NO               NO
+  Add employees                   YES      YES (own dept)   NO
+  Add managers                    YES      NO               NO
+  Delete employees                YES      NO               NO
+  Create tasks                    NO       YES (own dept)   NO
+  Update task status              NO       NO               YES
+  Check in / check out            NO       NO               YES
+  View team attendance            NO       YES (own dept)   NO
+  View all attendance             YES      NO               NO
+  Generate payroll                YES      YES (own dept)   NO
+  View own payroll                NO       NO               YES
+  Apply for leave                 NO       YES              YES
+  Approve employee leave          YES      YES (own dept)   NO
+  Approve manager leave           YES      NO               NO
+  View all leaves                 YES      NO               NO
+
+  NOTE: "own dept" means the manager can only do this for employees
+        in their assigned department — not for other departments.

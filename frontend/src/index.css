@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #7C3AED44; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #7C3AED99; }
+
+/* ── Keyframes ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-18px) rotate(2deg); }
+  66%       { transform: translateY(-8px) rotate(-1deg); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-24px) rotate(-3deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px #7C3AED44, 0 0 40px #7C3AED22; }
+  50%       { box-shadow: 0 0 40px #7C3AED88, 0 0 80px #7C3AED44; }
+}
+@keyframes pulse-glow-cyan {
+  0%, 100% { box-shadow: 0 0 20px #06B6D444, 0 0 40px #06B6D422; }
+  50%       { box-shadow: 0 0 40px #06B6D488, 0 0 80px #06B6D444; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  50%  { transform: translateY(-40px) translateX(20px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-80px) translateX(-10px) scale(0.8); opacity: 0; }
+}
+@keyframes nav-slide {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes bounce-in {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* ── Utility classes ── */
+.animate-float       { animation: float 6s ease-in-out infinite; }
+.animate-float2      { animation: float2 8s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-pulse-glow-cyan { animation: pulse-glow-cyan 3s ease-in-out infinite; }
+.animate-slide-up    { animation: slide-up 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-slide-in-left { animation: slide-in-left 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-fade-in     { animation: fade-in 0.6s ease forwards; }
+.animate-spin-slow   { animation: spin-slow 12s linear infinite; }
+.animate-morph       { animation: morph 8s ease-in-out infinite; }
+.animate-bounce-in   { animation: bounce-in 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-nav-slide   { animation: nav-slide 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ── Glass morphism ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glass-light {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(124,58,237,0.15);
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #7C3AED, #06B6D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-hot {
+  background: linear-gradient(135deg, #F43F5E, #F59E0B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Shimmer button ── */
+.btn-shimmer {
+  background: linear-gradient(135deg, #7C3AED, #06B6D4, #7C3AED);
+  background-size: 200% auto;
+  transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-shimmer:hover {
+  background-position: right center;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px #7C3AED55;
+}
+.btn-shimmer:active { transform: translateY(0); }
+
+/* ── Glow input ── */
+.input-glow:focus {
+  box-shadow: 0 0 0 2px #7C3AED55, 0 0 20px #7C3AED22;
+  border-color: #7C3AED !important;
+}
+
+/* ── Nav active glow ── */
+.nav-active-glow {
+  background: linear-gradient(135deg, #7C3AED22, #06B6D422);
+  box-shadow: inset 0 0 20px #7C3AED11;
+}
+
+/* ── Particle ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-drift linear infinite;
+}
