@@ -1,6 +1,10 @@
 COMPANY MANAGEMENT SYSTEM (CMS) — Overview
 ==========================================
 
+🌐 Live Demo: https://cms-frontend-zln9.onrender.com
+🔌 API: https://cms-p7tx.onrender.com/api
+📦 GitHub: https://github.com/intsurjeetkaran-droid/cms
+
 What is this system?
 --------------------
 A digital platform that helps a company manage its employees, work tasks,

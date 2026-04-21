@@ -1,9 +1,10 @@
-# Company Management System (CMS)
+# NexusCMS - Company Management System
 
 A full-stack company management platform built with Node.js, React, and MongoDB Atlas.
 Role-based access control gives admins, managers, and employees their own tailored experience.
 
 **🌐 Live Demo:** https://cms-frontend-zln9.onrender.com  
+**🔌 API:** https://cms-p7tx.onrender.com/api  
 **📦 GitHub:** https://github.com/intsurjeetkaran-droid/cms
 
 ---
@@ -108,66 +109,90 @@ cms/
 
 ## Getting Started
 
+### Live Production URLs
+
+**Frontend:** https://cms-frontend-zln9.onrender.com  
+**Backend API:** https://cms-p7tx.onrender.com/api
+
+The application is fully deployed and ready to use. For local development, follow the setup below.
+
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB Atlas account
-- npm
+- MongoDB Atlas account (or use production backend)
+- npm or yarn
 
-### Backend Setup
+### Local Development Setup
+
+#### Backend Setup
 
 ```bash
-cd cms/backend
+cd backend
 npm install
 ```
 
-Create `.env`:
+Create `.env` file:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/CMS_DB?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/CMS_DB?retryWrites=true&w=majority
 JWT_SECRET=yourStrongSecret
+NODE_ENV=development
 ```
 
+Start backend:
 ```bash
 npm run dev    # development with nodemon
 npm start      # production
 ```
 
-### Frontend Setup
+Backend will run on `http://localhost:5000`
+
+#### Frontend Setup
 
 ```bash
-cd cms/frontend
+cd frontend
 npm install
 ```
 
-Create `.env` file (or copy from `.env.example`):
+Create `.env` file:
 
 ```env
-# For production (Render deployment)
+# Use production backend (recommended for quick start)
 VITE_API_URL=https://cms-p7tx.onrender.com/api
 
-# For local development
+# Or use local backend
 # VITE_API_URL=http://localhost:5000/api
 ```
 
+Start frontend:
 ```bash
 npm run dev
 ```
 
-Frontend → `http://localhost:5173` | Backend → `https://cms-p7tx.onrender.com`
-
-### DNS Note
-
-If MongoDB Atlas connection fails with `ECONNREFUSED`, `db.js` forces Google DNS (`8.8.8.8`) to resolve SRV records. This fixes the issue on networks with broken IPv6 DNS.
+Frontend will run on `http://localhost:5173`
 
 ---
 
 ## Initial Setup — Create First Admin
 
-No registration UI exists by design. Create the first admin via API (Postman / Thunder Client):
+The production system is ready to use. Create the first admin user via API:
 
+**Using the production API:**
+```bash
+POST https://cms-p7tx.onrender.com/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin",
+  "email": "admin@company.com",
+  "password": "admin@123",
+  "role": "admin"
+}
 ```
+
+**Or using local API:**
+```bash
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
@@ -179,9 +204,10 @@ Content-Type: application/json
 }
 ```
 
-Then follow this workflow:
-1. Login at `http://localhost:5173` → Admin dashboard opens
-2. **Admin → Departments** → Create departments
+### Recommended Workflow
+
+1. **Login** at https://cms-frontend-zln9.onrender.com → Admin dashboard opens
+2. **Admin → Departments** → Create departments (e.g., Engineering, Sales, HR)
 3. **Admin → Employees** → Add managers (role = Manager, no department needed yet)
 4. **Admin → Departments** → Assign each manager to a department
 5. **Admin → Employees** → Add employees (department required)
@@ -434,3 +460,88 @@ Leave days (`status = "leave"`) are **not** counted as absent — no deduction.
 | Max leave days per month         | `leaveController.js`     | 5 days   |
 | JWT expiry                       | `authController.js`      | 1 day    |
 | Minimum salary                   | `employeeController.js`  | $20,000  |
+
+---
+
+## Deployment
+
+### Production Deployment (Render)
+
+**Backend:** https://cms-p7tx.onrender.com  
+**Frontend:** https://cms-frontend-zln9.onrender.com
+
+Both services are deployed on Render with auto-deployment from GitHub main branch.
+
+#### Backend Configuration (Render)
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Environment Variables:
+  - `PORT=5000`
+  - `MONGO_URI=<your_mongodb_atlas_uri>`
+  - `JWT_SECRET=<your_secret>`
+  - `NODE_ENV=production`
+
+#### Frontend Configuration (Render)
+- Build Command: `npm run build`
+- Publish Directory: `dist`
+- Environment Variables:
+  - `VITE_API_URL=https://cms-p7tx.onrender.com/api`
+
+#### CORS Configuration
+Backend is configured to accept requests from:
+- `http://localhost:5173` (local development)
+- `https://cms-frontend-zln9.onrender.com` (production)
+
+---
+
+## Features
+
+### Core Modules
+- **Authentication** - JWT-based secure login with role-based access
+- **Employees** - Complete CRUD with department-level restrictions
+- **Departments** - Organization structure with manager assignments
+- **Tasks** - Assignment and tracking with one-way status updates
+- **Attendance** - Daily check-in/out with history and status tracking
+- **Payroll** - Automated salary calculation with absence deductions
+- **Leaves** - Request and approval workflow with automatic attendance updates
+
+### UI/UX Highlights
+- Professional SVG icons throughout (no emojis)
+- Light/Dark theme with proper contrast
+- Fully responsive (mobile/tablet/desktop)
+- Real-time data updates
+- Loading states and error handling
+- Smooth animations and transitions
+- PWA-ready with manifest.json
+
+### Security Features
+- JWT authentication with 1-day expiration
+- Role-based access control
+- Password hashing with bcrypt
+- CORS protection
+- Input validation
+- Environment variable protection
+
+---
+
+## Documentation
+
+For detailed business logic and workflows, see `overview.txt` in the root directory.
+
+---
+
+## License
+
+This project is open source and available for educational purposes.
+
+---
+
+## Support
+
+For issues or questions:
+- GitHub Issues: https://github.com/intsurjeetkaran-droid/cms/issues
+- Repository: https://github.com/intsurjeetkaran-droid/cms
+
+---
+
+**Built with ❤️ using Node.js, React, and MongoDB**
