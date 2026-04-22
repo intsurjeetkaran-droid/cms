@@ -68,18 +68,18 @@ export default function Profile() {
 
         <div className="px-5 sm:px-6 pb-5 sm:pb-6">
           {/* Avatar + name row — avatar overlaps cover, name sits beside it */}
-          <div className="flex items-end justify-between -mt-8 mb-4">
-            <div className="flex items-end gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 border-4 border-white dark:border-slate-900 shadow-lg flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xl flex-shrink-0">
+          <div className="flex items-end justify-between -mt-8 mb-4 gap-2">
+            <div className="flex items-end gap-3">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white dark:bg-slate-800 border-4 border-white dark:border-slate-900 shadow-lg flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-lg sm:text-xl flex-shrink-0">
                 {initials}
               </div>
-              <div className="pb-1">
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white leading-tight">{user.name || "—"}</h2>
+              <div className="pb-1 min-w-0">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-tight truncate">{user.name || "—"}</h2>
                 <p className="text-slate-400 text-sm mt-0.5">{profile?.designation || user.role}</p>
               </div>
             </div>
             {/* Status badge */}
-            <span className={`mb-1 px-3 py-1 rounded-full text-xs font-semibold border flex-shrink-0 ${
+            <span className={`mb-1 px-2.5 py-1 rounded-full text-xs font-semibold border flex-shrink-0 ${
               profile?.status === "active"
                 ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/30"
                 : "bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-600"

@@ -99,7 +99,8 @@ export default function Login() {
   const isDark = theme === "dark";
 
   return (
-    <div className={"min-h-screen flex overflow-hidden relative " + (isDark ? "bg-brand-dark" : "bg-slate-50")}>
+    <div className={"min-h-screen flex overflow-hidden relative " + (isDark ? "bg-brand-dark" : "bg-slate-50")}
+      style={{ paddingTop: "var(--sat)", paddingBottom: "var(--sab)" }}>
 
       <Orb className="w-[600px] h-[600px] -top-48 -left-48 animate-float"
         style={{ background: "radial-gradient(circle, #7C3AED33 0%, transparent 70%)" }} />

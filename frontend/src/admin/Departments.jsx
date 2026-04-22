@@ -147,13 +147,13 @@ export default function Departments() {
 
       {/* Loading skeleton for top cards */}
       {loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="h-36 rounded-2xl bg-slate-200 dark:bg-slate-800 animate-pulse" />
           <div className="h-36 rounded-2xl bg-slate-200 dark:bg-slate-800 animate-pulse" />
         </div>
       )}
 
-      {!loading && <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      {!loading && <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 md:p-6">
           <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-4">Create Department</h2>
 

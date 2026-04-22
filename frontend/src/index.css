@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Safe area insets (Capacitor / notch support) ── */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+/* Prevent overscroll bounce on iOS */
+html, body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ── Custom scrollbar ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -145,4 +159,27 @@
   border-radius: 50%;
   pointer-events: none;
   animation: particle-drift linear infinite;
+}
+
+/* ── Safe area padding utilities (Capacitor) ── */
+.pt-safe  { padding-top:    var(--sat); }
+.pb-safe  { padding-bottom: var(--sab); }
+.pl-safe  { padding-left:   var(--sal); }
+.pr-safe  { padding-right:  var(--sar); }
+
+/* ── Bottom nav bar (mobile) ── */
+.bottom-nav {
+  padding-bottom: calc(0.5rem + var(--sab));
+}
+
+/* ── Touch target minimum size ── */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ── Prevent text size adjustment on orientation change ── */
+* {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }

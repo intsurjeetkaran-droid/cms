@@ -129,7 +129,7 @@ export default function ManagerPayroll() {
             onChange={(e) => setForm({ ...form, month: e.target.value })}
             className={inputCls + " sm:w-44"} />
           <button type="submit" disabled={generating}
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold rounded-lg text-sm transition whitespace-nowrap">
+            className="w-full sm:w-auto px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold rounded-lg text-sm transition whitespace-nowrap">
             {generating ? "Generating..." : "Generate Payroll"}
           </button>
         </form>

@@ -94,7 +94,18 @@ coverage/
 data/
 *.db
 
-# ── Misc ──
+# ── Capacitor / Android build artifacts ──
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/capacitor-cordova-android-plugins/build/
+frontend/android/.idea/
+frontend/android/local.properties
+
+# ── APK files (tracked separately as releases) ──
+# NexusCMS.apk is intentionally tracked at root
+
+
 .eslintcache
 .parcel-cache
 .vercel
@@ -104,3 +115,11 @@ out/
 
 # ── Deployment Status (optional - keep for reference) ──
 # DEPLOYMENT_STATUS.md
+
+# ── Capacitor / Android build artifacts ──
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/capacitor-cordova-android-plugins/build/
+frontend/android/.idea/
+frontend/android/local.properties

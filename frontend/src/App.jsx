@@ -32,6 +32,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 
 // Admin
 import AdminLayout       from "./admin/AdminLayout";
@@ -79,7 +80,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
 
         {/* Admin */}

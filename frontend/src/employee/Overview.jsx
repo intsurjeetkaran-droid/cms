@@ -142,8 +142,8 @@ export default function Overview() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6">
         {stats.map((s) => (
-          <div key={s.label} className={`rounded-xl border p-4 md:p-5 ${s.bg}`}>
-            <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm">{s.label}</p>
+          <div key={s.label} className={`rounded-xl border p-3 md:p-5 ${s.bg}`}>
+            <p className="text-slate-500 dark:text-slate-400 text-xs">{s.label}</p>
             {s.value ? (
               <p className={`text-base md:text-xl font-bold mt-1 ${s.color} break-words leading-tight`}>{s.value}</p>
             ) : (
